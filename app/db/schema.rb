@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140724063709) do
+ActiveRecord::Schema.define(version: 20140808170840) do
+
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "video_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+  add_index "comments", ["video_id"], name: "index_comments_on_video_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -24,5 +35,14 @@ ActiveRecord::Schema.define(version: 20140724063709) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+
+  create_table "videos", force: true do |t|
+    t.integer  "user_id"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "videos", ["user_id"], name: "index_videos_on_user_id", using: :btree
 
 end
