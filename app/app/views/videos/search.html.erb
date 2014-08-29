@@ -1,0 +1,14 @@
+<% provide(:title, 'Add video') %>
+<h1>Search for a video</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for @video do |f| %>
+
+      <%= f.label :url %>
+      <%= f.text_field :url %>
+
+      <%= f.submit "Search for video", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

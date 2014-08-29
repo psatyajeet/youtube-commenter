@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :comments
+
+  match 'videos/search', to: 'videos#search',  via: 'get'
+  resources :videos, only: [:show, :create]
+
   resources :sessions, only: [:new, :create, :destroy]
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
