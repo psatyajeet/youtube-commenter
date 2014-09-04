@@ -3,8 +3,8 @@ class VideosController < ApplicationController
 	def show
 		@video = Video.find(params[:id])
 		@comments = @video.comments
-		@youtube_id = /.*watch\?v=(.*)/.match(@video.url)
-		logger.info @youtube_id
+		@comment = @video.comments.build
+		@youtube_id = /.*watch\?v=(.*)/.match(@video.url)[1]
 	end
 
 	def search

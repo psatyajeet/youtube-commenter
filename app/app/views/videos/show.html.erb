@@ -1,6 +1,3 @@
-<% @video.url = "Hx185nGLjLE" %>
-
-
 <table>
 	<tr>
 		<td><div id="videoDiv">Loading...</div></td>
@@ -14,17 +11,17 @@
 	</tr>
 </table>
 
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for @comment do |f| %>
+<% if @video.comments.any? %>
+	<div class="row">
+	  <div class="span6 offset3">
+	    <%= render @comments %>
+	  </div>
+	</div>
+<% end %>
 
-      <%= f.label :body %>
-      <%= f.text_field :body %>
 
-      <%= f.submit "Add comment", class: "btn btn-large btn-primary" %>
-    <% end %>
-  </div>
-</div>
+<%= render 'comments/comment_form' %>
+
 
 <style type="text/css">
 	#videoDiv { 
@@ -86,7 +83,7 @@
       // The "main method" of this sample. Called when someone clicks "Run".
       function loadPlayer() {
         // The video to load
-        var videoID = "<%= @youtube_id[1] %>"
+        var videoID = "<%= @youtube_id %>"
         // Lets Flash from another domain call JavaScript
         var params = { allowScriptAccess: "always" };
         // The element id of the Flash embed
